@@ -16,6 +16,22 @@ const createCar = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+const getAllCars = async (req: Request, res: Response) => {
+  try {
+    const result = await CarServices.getAllCarsFromDB();
+
+    res.status(200).json({
+      success: true,
+      message: 'Cars retrieved successfully',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const CarController = {
   createCar,
+  getAllCars,
 };

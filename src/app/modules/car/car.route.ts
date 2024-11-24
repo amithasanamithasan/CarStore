@@ -5,5 +5,5 @@ import { CarController } from './car.controller';
 const router = express.Router();
 // router call controller function
 router.post('/api/cars', CarController.createCar);
-
+router.get('/', CarController.getAllCars);
 export const CarsRoutes = router;
