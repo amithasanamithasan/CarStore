@@ -6,4 +6,5 @@ const router = express.Router();
 // router call controller function
 router.post('/api/cars', CarController.createCar);
 router.get('/', CarController.getAllCars);
+router.get('/api/cars', CarController.getallCarsSearchquery);
 export const CarsRoutes = router;

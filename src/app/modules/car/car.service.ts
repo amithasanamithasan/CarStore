@@ -10,8 +10,13 @@ const getAllCarsFromDB = async () => {
   const result = await carmodel.find();
   return result;
 };
-
+// getallsearchfromDB
+const getAllCarsSearchqueryFromDB = async (query: object) => {
+  const result = await carmodel.find(query);
+  return result;
+};
 export const CarServices = {
   createCarIntoDB,
   getAllCarsFromDB,
+  getAllCarsSearchqueryFromDB,
 };
