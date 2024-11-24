@@ -7,4 +7,5 @@ const router = express.Router();
 router.post('/api/cars', CarController.createCar);
 router.get('/', CarController.getAllCars);
 router.get('/api/cars', CarController.getallCarsSearchquery);
+router.get('/api/cars/:carId', CarController.getSingleCar);
 export const CarsRoutes = router;

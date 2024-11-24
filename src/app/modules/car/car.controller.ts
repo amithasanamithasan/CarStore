@@ -64,8 +64,27 @@ const getallCarsSearchquery = async (req: Request, res: Response) => {
   }
 };
 
+//The details of a specific car by ID Query findOne
+
+const getSingleCar = async (req: Request, res: Response) => {
+  try {
+    const { car: carId } = req.params;
+    // console.log(carId);
+    const result = await CarServices.getSingleCarFromDB(carId);
+
+    res.status(200).json({
+      success: true,
+      message: 'Car retrieved successfully ',
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const CarController = {
   createCar,
   getAllCars,
   getallCarsSearchquery,
+  getSingleCar,
 };
