@@ -8,4 +8,5 @@ router.post('/api/cars', CarController.createCar);
 router.get('/', CarController.getAllCars);
 router.get('/api/cars', CarController.getallCarsSearchquery);
 router.get('/api/cars/:carId', CarController.getSingleCar);
+router.put('/api/cars/:carId', CarController.SingleUpdatedCar);
 export const CarsRoutes = router;

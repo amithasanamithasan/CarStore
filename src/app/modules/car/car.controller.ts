@@ -81,10 +81,43 @@ const getSingleCar = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+//FindOneUpdate a Car
+const SingleUpdatedCar = async (req: Request, res: Response) => {
+  try {
+    const { carId } = req.params;
+
+    const updatedCar = await CarServices.getSingleCarUpdatedFromDB(
+      carId,
+      req.body,
+    );
+
+    if (!updatedCar) {
+      res.status(404).json({
+        success: false,
+        message: 'Car not found',
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Car updated successfully',
+      data: updatedCar,
+    });
+  } catch (error) {
+    console.error('Error updating car:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+      error: error instanceof Error ? error.message : undefined,
+    });
+  }
+};
 
 export const CarController = {
   createCar,
   getAllCars,
   getallCarsSearchquery,
   getSingleCar,
+  SingleUpdatedCar,
 };
