@@ -35,10 +35,20 @@ const getSingleCarUpdatedFromDB = async (
   });
   return result;
 };
+
+// Delete a Car
+const getSingleCarDeleteFromDB = async (id: string) => {
+  console.log('Deleting car with ID:', id); // Log the ID being deleted
+  const result = await carmodel.findByIdAndDelete({ _id: id });
+  console.log('Deletion result:', result); // Log the deletion result
+  return result;
+};
+
 export const CarServices = {
   createCarIntoDB,
   getAllCarsFromDB,
   getAllCarsSearchqueryFromDB,
   getSingleCarFromDB,
   getSingleCarUpdatedFromDB,
+  getSingleCarDeleteFromDB,
 };

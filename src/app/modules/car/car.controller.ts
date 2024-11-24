@@ -22,7 +22,7 @@ const getAllCars = async (req: Request, res: Response) => {
     const result = await CarServices.getAllCarsFromDB();
 
     res.status(200).json({
-      success: true,
+      status: true,
       message: 'Cars retrieved successfully',
       data: result,
     });
@@ -52,7 +52,7 @@ const getallCarsSearchquery = async (req: Request, res: Response) => {
 
     res.status(200).json({
       message: 'Cars retrieved successfully',
-      success: true,
+      status: true,
       data: cars,
     });
   } catch (error) {
@@ -73,7 +73,7 @@ const getSingleCar = async (req: Request, res: Response) => {
     const result = await CarServices.getSingleCarFromDB(carId);
 
     res.status(200).json({
-      success: true,
+      status: true,
       message: 'Car retrieved successfully ',
       data: result,
     });
@@ -85,12 +85,12 @@ const getSingleCar = async (req: Request, res: Response) => {
 const SingleUpdatedCar = async (req: Request, res: Response) => {
   try {
     const { carId } = req.params;
-
+    // console.log('Car ID:', carId);
     const updatedCar = await CarServices.getSingleCarUpdatedFromDB(
       carId,
       req.body,
     );
-
+    // console.log('Request Body:', req.body);
     if (!updatedCar) {
       res.status(404).json({
         success: false,
@@ -114,10 +114,47 @@ const SingleUpdatedCar = async (req: Request, res: Response) => {
   }
 };
 
+// Deleted car data
+const CarDeleteData = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { carId } = req.params;
+
+    // Validate carId
+    if (!carId) {
+      res.status(400).json({
+        success: false,
+        message: 'Car ID is required',
+      });
+    }
+
+    const result = await CarServices.getSingleCarDeleteFromDB(carId);
+
+    if (!result) {
+      res.status(404).json({
+        success: false,
+        message: 'Car not found',
+      });
+    }
+
+    res.status(200).json({
+      status: true,
+      message: 'Car deleted successfully',
+      data: {},
+    });
+  } catch (error) {
+    console.error('Error deleting car:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting car',
+    });
+  }
+};
+
 export const CarController = {
   createCar,
   getAllCars,
   getallCarsSearchquery,
   getSingleCar,
   SingleUpdatedCar,
+  CarDeleteData,
 };
