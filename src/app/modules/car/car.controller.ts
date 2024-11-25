@@ -13,7 +13,11 @@ const createCar = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      message: 'Failed to retrieve cars',
+      success: false,
+      error: error instanceof Error ? error.message : undefined,
+    });
   }
 };
 
@@ -27,7 +31,11 @@ const getAllCars = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      message: 'Failed to retrieve cars',
+      success: false,
+      error: error instanceof Error ? error.message : undefined,
+    });
   }
 };
 
@@ -56,10 +64,10 @@ const getallCarsSearchquery = async (req: Request, res: Response) => {
       data: cars,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       message: 'Failed to retrieve cars',
       success: false,
+      error: error instanceof Error ? error.message : undefined,
     });
   }
 };
@@ -78,7 +86,11 @@ const getSingleCar = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      message: 'Failed to retrieve cars',
+      success: false,
+      error: error instanceof Error ? error.message : undefined,
+    });
   }
 };
 //FindOneUpdate a Car
@@ -105,7 +117,6 @@ const SingleUpdatedCar = async (req: Request, res: Response) => {
       data: updatedCar,
     });
   } catch (error) {
-    console.error('Error updating car:', error);
     res.status(500).json({
       success: false,
       message: 'Internal Server Error',
@@ -142,10 +153,10 @@ const CarDeleteData = async (req: Request, res: Response): Promise<void> => {
       data: {},
     });
   } catch (error) {
-    console.error('Error deleting car:', error);
     res.status(500).json({
       success: false,
       message: 'Error deleting car',
+      error: error instanceof Error ? error.message : undefined,
     });
   }
 };

@@ -1,5 +1,5 @@
 import { carmodel } from '../car.model';
-import { Car, CarCategory } from './car.interface';
+import { Car } from './car.interface';
 
 const createCarIntoDB = async (car: Car) => {
   const result = await carmodel.create(car);
@@ -38,9 +38,9 @@ const getSingleCarUpdatedFromDB = async (
 
 // Delete a Car
 const getSingleCarDeleteFromDB = async (id: string) => {
-  console.log('Deleting car with ID:', id);
+  // console.log('Delete car with ID:', id);
   const result = await carmodel.findByIdAndDelete({ _id: id });
-  console.log('Deletion result:', result);
+  // console.log('Deleted result:', result);
   return result;
 };
 

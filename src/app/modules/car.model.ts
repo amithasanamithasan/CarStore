@@ -20,7 +20,7 @@ const carSchema = new Schema<Car>(
     quantity: { type: Number, required: true, min: 0 },
     inStock: { type: Boolean, default: true },
   },
-  { timestamps: true }, // createdAt and updatedAt my project requirment
+  { timestamps: true },
 );
 
 // Create the model
