@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, connect } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { Car, CarCategory } from './car/car.interface';
 
 const carSchema = new Schema<Car>(

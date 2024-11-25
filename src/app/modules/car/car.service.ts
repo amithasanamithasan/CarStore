@@ -38,9 +38,9 @@ const getSingleCarUpdatedFromDB = async (
 
 // Delete a Car
 const getSingleCarDeleteFromDB = async (id: string) => {
-  console.log('Deleting car with ID:', id); // Log the ID being deleted
+  console.log('Deleting car with ID:', id);
   const result = await carmodel.findByIdAndDelete({ _id: id });
-  console.log('Deletion result:', result); // Log the deletion result
+  console.log('Deletion result:', result);
   return result;
 };
 
