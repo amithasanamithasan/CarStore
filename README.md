@@ -4,7 +4,11 @@
 Develop an Express application with TypeScript, integrating MongoDB with Mongoose to manage a Car Store. Ensure data integrity using Mongoose schema validation.  
 
 ---
-
+Project Setup:
+Create an Express project with TypeScript.
+Set up a MongoDB database to store Cars and Orders.
+Use Mongoose for schema definition and data operations.
+Implement CRUD operations for both cars and orders.
 ## Project Setup  
 1. **Create an Express project with TypeScript**  
    - Set up the project using TypeScript for type safety.  
