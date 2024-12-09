@@ -10,8 +10,8 @@ app.use(cors());
 
 // application routes
 
-app.use('/api/v1/cars', CarsRoutes);
-app.use('/api/v1/orders', orderRoutes);
+app.use('/', CarsRoutes);
+app.use('/', orderRoutes);
 const getAController = (req: Request, res: Response) => {
   const a = 10;
 
