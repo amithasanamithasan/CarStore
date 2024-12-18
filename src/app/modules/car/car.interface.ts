@@ -1,18 +1,20 @@
+/**
+ * Enum representing car categories.
+ */
 export enum CarCategory {
   Sedan = 'Sedan',
   SUV = 'SUV',
   Truck = 'Truck',
   Coupe = 'Coupe',
-  Convertible = 'Convertible',
 }
 
 export type Car = {
-  brand: string;
-  model: string;
-  year: number;
+  readonly brand: string;
+  readonly model: string;
+  readonly year: number;
   price: number;
   category: CarCategory;
-  description: string;
+  description?: string;
   quantity: number;
-  inStock: boolean;
+  inStock?: boolean;
 };

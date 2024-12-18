@@ -3,25 +3,29 @@ import { Car, CarCategory } from './car/car.interface';
 
 const carSchema = new Schema<Car>(
   {
-    brand: { type: String, required: true },
-    model: { type: String, required: true },
-    year: { type: Number, required: true },
+    brand: { type: String },
+    model: { type: String },
+    year: { type: Number },
     price: {
       type: Number,
-      required: true,
-      min: 0,
+      required: [true, 'Price is required'],
+      min: [0, 'Price must be a positive number'],
     },
     category: {
       type: String,
-      enum: Object.values(CarCategory),
-      required: true,
+      enum: {
+        values: Object.values(CarCategory),
+      },
     },
     description: { type: String },
-    quantity: { type: Number, required: true, min: 0 },
+    quantity: {
+      type: Number,
+      required: [true, 'Quantity is required'],
+      min: [0, 'Quantity must be a non-negative number'],
+    },
     inStock: { type: Boolean, default: true },
   },
   { timestamps: true },
 );
 
-// Create the model
-export const carmodel = mongoose.model<Car>('car', carSchema);
+export const carModel = mongoose.model<Car>('Car', carSchema, 'cars');

@@ -1,4 +1,4 @@
-import { carmodel } from '../car.model';
+import { carModel } from '../car.model';
 import { ordermodel } from '../order.model';
 
 const placeOrder = async (orderData: {
@@ -10,7 +10,7 @@ const placeOrder = async (orderData: {
   const { car, quantity } = orderData;
 
   // Find the car in the database
-  const carToUpdate = await carmodel.findById(car);
+  const carToUpdate = await carModel.findById(car);
   //   console.log(carToUpdate);
   if (!carToUpdate) {
     throw new Error('Car not found');

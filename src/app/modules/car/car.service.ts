@@ -1,27 +1,27 @@
-import { carmodel } from '../car.model';
+import { carModel } from '../car.model';
 import { Car } from './car.interface';
 
 const createCarIntoDB = async (car: Car) => {
-  const result = await carmodel.create(car);
+  const result = await carModel.create(car);
   return result;
 };
 
 const getAllCarsFromDB = async () => {
-  const result = await carmodel.find();
+  const result = await carModel.find();
   return result;
 };
 
 // getallsearchqueryfromDB
 
 const getAllCarsSearchqueryFromDB = async (query: object) => {
-  const result = await carmodel.find(query);
+  const result = await carModel.find(query);
   return result;
 };
 
 //The details of a specific car by ID
 
 const getSingleCarFromDB = async (id: string) => {
-  const result = await carmodel.findOne({ id: id });
+  const result = await carModel.findOne({ id: id });
   return result;
 };
 // Update a Car
@@ -29,7 +29,7 @@ const getSingleCarUpdatedFromDB = async (
   carId: string,
   payload: Partial<Car>,
 ) => {
-  const result = await carmodel.findByIdAndUpdate(carId, payload, {
+  const result = await carModel.findByIdAndUpdate(carId, payload, {
     new: true,
     runValidators: true,
   });
@@ -39,7 +39,7 @@ const getSingleCarUpdatedFromDB = async (
 // Delete a Car
 const getSingleCarDeleteFromDB = async (id: string) => {
   // console.log('Delete car with ID:', id);
-  const result = await carmodel.findByIdAndDelete({ _id: id });
+  const result = await carModel.findByIdAndDelete({ _id: id });
   // console.log('Deleted result:', result);
   return result;
 };
