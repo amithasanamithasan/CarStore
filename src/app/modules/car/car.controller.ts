@@ -3,9 +3,9 @@ import { CarServices } from './car.service';
 
 const createCar = async (req: Request, res: Response) => {
   try {
-    const { car: CarData } = req.body;
+    const car = req.body;
     // console.log(CarData );
-    const result = await CarServices.createCarIntoDB(CarData);
+    const result = await CarServices.createCarIntoDB(car);
 
     res.status(200).json({
       success: true,
@@ -41,10 +41,12 @@ const getAllCars = async (req: Request, res: Response) => {
 
 // get search data with query
 
-const getallCarsSearchquery = async (req: Request, res: Response) => {
+const getallCarsSearchquery = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   try {
     const { searchTerm } = req.query;
-    // console.log(searchTerm);
 
     const query = searchTerm
       ? {
@@ -58,16 +60,27 @@ const getallCarsSearchquery = async (req: Request, res: Response) => {
 
     const cars = await CarServices.getAllCarsSearchqueryFromDB(query);
 
+    if (!cars || cars.length === 0) {
+      // If no cars are found, we return a response here
+      res.status(404).json({
+        status: false,
+        message: 'No cars found matching your search criteria.',
+        data: [],
+      });
+    }
+
+    // Successful response
     res.status(200).json({
-      message: 'Cars retrieved successfully',
       status: true,
+      message: 'Cars retrieved successfully.',
       data: cars,
     });
   } catch (error) {
+    // Error handling response
     res.status(500).json({
-      message: 'Failed to retrieve cars',
-      success: false,
-      error: error instanceof Error ? error.message : undefined,
+      status: false,
+      message: 'Failed to retrieve cars.',
+      error: error instanceof Error ? error.message : 'Unknown error occurred.',
     });
   }
 };
