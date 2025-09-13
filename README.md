@@ -8,10 +8,10 @@ Mongoose
 TypeScript
 Package Management:
 
-Any npm packages that are required for your project
+Any npm packages that are required for my project
 Additional Technologies:
 
-Feel free to incorporate any additional technologies that you deem necessary for your project.
+Feel free to incorporate any additional technologies that you deem necessary for my project.
 ## Objective  
 Develop an Express application with TypeScript, integrating MongoDB with Mongoose to manage a Car Store. Ensure data integrity using Mongoose schema validation.  
 
